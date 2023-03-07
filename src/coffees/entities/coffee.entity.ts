@@ -20,6 +20,8 @@ export class Coffee {
 
   // Join table specifies the owners side of the relationship.
   @JoinTable()
-  @ManyToMany((type) => Flavor, (flavor) => flavor.coffees)
-  flavors: string[];
+  @ManyToMany((type) => Flavor, (flavor) => flavor.coffees, {
+    cascade: true, // ['insert']
+  })
+  flavors: Flavor[];
 }
