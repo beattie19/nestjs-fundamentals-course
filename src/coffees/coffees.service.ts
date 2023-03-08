@@ -17,10 +17,7 @@ export class CoffeesService {
     @InjectRepository(Flavor)
     private readonly flavorRepository: Repository<Flavor>,
     private readonly dataSource: DataSource,
-    @Inject('COFFEE_BRANDS') coffeeBransds: string[],
-  ) {
-    console.log(coffeeBransds);
-  }
+  ) {}
 
   findAll(paginationQuery: PaginationQueryDto) {
     const { limit, offset } = paginationQuery;

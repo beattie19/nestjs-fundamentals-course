@@ -6,6 +6,7 @@ import { CoffeesController } from './coffees/coffees.controller';
 import { CoffeesService } from './coffees/coffees.service';
 import { CoffeesModule } from './coffees/coffees.module';
 import { CoffeeRatingModule } from './coffee-rating/coffee-rating.module';
+import { DatabaseModule } from './database/database.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { CoffeeRatingModule } from './coffee-rating/coffee-rating.module';
       synchronize: true, // your entities will be synced with the database(recommended: disable in prod)
     }),
     CoffeeRatingModule,
+    DatabaseModule,
   ],
   controllers: [AppController],
   providers: [AppService],
