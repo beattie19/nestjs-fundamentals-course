@@ -9,9 +9,17 @@ import { CoffeeRatingModule } from './coffee-rating/coffee-rating.module';
 import { DatabaseModule } from './database/database.module';
 import { ConfigModule } from '@nestjs/config';
 
+
+// Don't allow using any .env files
+// ConfigModule.forRoot({
+//   ignoreEnvFile: true,
+// });
+
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      envFilePath: '.environment',
+    }),
     CoffeesModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
