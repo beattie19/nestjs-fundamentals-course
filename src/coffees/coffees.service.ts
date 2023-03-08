@@ -13,6 +13,10 @@ import { Flavor } from './entities/flavor.entity';
 
 // @Injectable({ scope: Scope.TRANSIENT })
 // @Injectable({ scope: Scope.REQUEST })
+
+// Set a default value, incase the config service cannot resolve the host.
+// const databaseHost = this.configService.get<string>('DATABASE_HOST', 'localhost);
+
 @Injectable()
 export class CoffeesService {
   constructor(
@@ -23,7 +27,7 @@ export class CoffeesService {
     private readonly dataSource: DataSource,
     private readonly configService: ConfigService,
   ) {
-    const databaseHost = this.configService.get<string>('DATABASE_HOST');
+    const databaseHost = this.configService.get('database.host');
     console.log(databaseHost);
   }
 
