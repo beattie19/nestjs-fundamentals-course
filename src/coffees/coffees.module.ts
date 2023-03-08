@@ -5,6 +5,20 @@ import { CoffeesService } from './coffees.service';
 import { Coffee } from './entities/coffee.entity';
 import { Flavor } from './entities/flavor.entity';
 
+
+// Our mock implementation
+// export class MockCoffeesService { }
+
+// @Module({
+//   providers: [
+//     {
+//       provide: CoffeesService,
+//       useValue: new MockCoffeesService(), // <-- mock implementation
+//     }
+//   ]
+// })
+// export class CoffeesModule {}
+
 @Module({
   controllers: [CoffeesController],
   providers: [CoffeesService],
