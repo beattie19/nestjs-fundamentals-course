@@ -12,7 +12,7 @@ import { Flavor } from './entities/flavor.entity';
 
 // @Injectable({ scope: Scope.TRANSIENT })
 // @Injectable({ scope: Scope.REQUEST })
-@Injectable({ scope: Scope.DEFAULT })
+@Injectable({ scope: Scope.REQUEST })
 export class CoffeesService {
   constructor(
     @InjectRepository(Coffee)
@@ -20,7 +20,9 @@ export class CoffeesService {
     @InjectRepository(Flavor)
     private readonly flavorRepository: Repository<Flavor>,
     private readonly dataSource: DataSource,
-  ) {}
+  ) {
+    console.log('service instantiated');
+  }
 
   findAll(paginationQuery: PaginationQueryDto) {
     const { limit, offset } = paginationQuery;
