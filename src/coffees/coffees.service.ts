@@ -15,6 +15,7 @@ import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 import { Coffee } from './entities/coffee.entity';
 import { Flavor } from './entities/flavor.entity';
 
+//     @Inject(COFFEE_BRANDS) coffeeBransds: string[],
 @Injectable()
 export class CoffeesService {
   constructor(
@@ -23,10 +24,7 @@ export class CoffeesService {
     @InjectRepository(Flavor)
     private readonly flavorRepository: Repository<Flavor>,
     private readonly dataSource: DataSource,
-    @Inject(COFFEE_BRANDS) coffeeBransds: string[],
-  ) {
-    console.log(coffeeBransds);
-  }
+  ) {}
 
   findAll(paginationQuery: PaginationQueryDto) {
     const { limit, offset } = paginationQuery;

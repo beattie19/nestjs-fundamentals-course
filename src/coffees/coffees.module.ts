@@ -27,13 +27,19 @@ import { Flavor } from './entities/flavor.entity';
 //   useValue: ['buddy brew', 'nescafe'] // array of coffee brands,
 // },
 
+class ConfigService {}
+class DevelopmentConfigService {}
+class ProductionConfigService {}
 @Module({
   controllers: [CoffeesController],
   providers: [
     CoffeesService,
     {
-      provide: 'COFFEE_BRANDS', // 👈
-      useValue: ['buddy brew', 'nescafe'], // array of coffee brands,
+      provide: ConfigService,
+      useClass:
+        process.env.NODE_ENV === 'development'
+          ? DevelopmentConfigService
+          : ProductionConfigService,
     },
   ],
   exports: [CoffeesService],
