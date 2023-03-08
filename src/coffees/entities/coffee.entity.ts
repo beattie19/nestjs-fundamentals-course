@@ -18,6 +18,9 @@ export class Coffee {
   @Column()
   brand: string;
 
+  @Column({ default: 0 })
+  recommendations: number;
+
   // Join table specifies the owners side of the relationship.
   @JoinTable()
   @ManyToMany((type) => Flavor, (flavor) => flavor.coffees, {
