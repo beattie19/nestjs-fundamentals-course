@@ -23,6 +23,7 @@ import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 import { SetMetadata } from '@nestjs/common';
 import { Public } from 'src/common/decorators/public.decorator';
 import { ParseIntPipe } from 'src/common/pipes/parse-int/parse-int.pipe';
+import { Protocol } from 'src/common/decorators/protocal.decorator';
 
 // Applies to all routes
 // @UsePipes(ValidationPipe)
@@ -36,11 +37,21 @@ export class CoffeesController {
   // Applies to only this route
   // @UsePipes(ValidationPipe)
 
+  // Custom public decorator
+  // @Public()
+
   @Public()
   @Get()
-  async findAll(@Query() paginationQuery: PaginationQueryDto) {
+  async findAll(
+    // @Protocol() protocol: string,
+    @Protocol('https') protocol: string,
+    @Query() paginationQuery: PaginationQueryDto,
+  ) {
     // Arbitrarily set timeout longer than the TimeoutInterceptor
     // await new Promise((resolve) => setTimeout(resolve, 5000));
+
+    console.log('protocol', protocol);
+
     return this.coffeeService.findAll(paginationQuery);
   }
 
