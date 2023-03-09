@@ -6,7 +6,6 @@ import { ApiKeyGuard } from './common/guards/api-key/api-key.guard';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.useGlobalGuards(new ApiKeyGuard());
   app.useGlobalFilters(new HttpExceptionFilter());
   app.useGlobalPipes(
     new ValidationPipe({

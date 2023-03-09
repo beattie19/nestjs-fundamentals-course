@@ -20,6 +20,8 @@ import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto';
 import { CoffeesService } from './coffees.service';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
+import { SetMetadata } from '@nestjs/common';
+import { Public } from 'src/common/decorators/public.decorator';
 
 // Applies to all routes
 // @UsePipes(ValidationPipe)
@@ -31,7 +33,9 @@ export class CoffeesController {
   ) {}
 
   // Applies to only this route
-  @UsePipes(ValidationPipe)
+  // @UsePipes(ValidationPipe)
+
+  @Public()
   @Get()
   findAll(@Query() paginationQuery: PaginationQueryDto) {
     return this.coffeeService.findAll(paginationQuery);
@@ -60,6 +64,9 @@ export class CoffeesController {
   }
 
   @Patch(':id')
+  // Validation pipe only applied to body, not id.
+  //   update(@Param('id') id: string, @Body(ValidationPipe) updateCoffeeDto: UpdateCoffeeDto) {
+
   update(@Param('id') id: string, @Body() updateCoffeeDto: UpdateCoffeeDto) {
     this.coffeeService.update(id, updateCoffeeDto);
   }
