@@ -22,6 +22,7 @@ import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 import { SetMetadata } from '@nestjs/common';
 import { Public } from 'src/common/decorators/public.decorator';
+import { ParseIntPipe } from 'src/common/pipes/parse-int/parse-int.pipe';
 
 // Applies to all routes
 // @UsePipes(ValidationPipe)
@@ -39,7 +40,7 @@ export class CoffeesController {
   @Get()
   async findAll(@Query() paginationQuery: PaginationQueryDto) {
     // Arbitrarily set timeout longer than the TimeoutInterceptor
-    await new Promise((resolve) => setTimeout(resolve, 5000));
+    // await new Promise((resolve) => setTimeout(resolve, 5000));
     return this.coffeeService.findAll(paginationQuery);
   }
 
@@ -50,7 +51,8 @@ export class CoffeesController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id', ParseIntPipe) id: string) {
+    console.log(id);
     return this.coffeeService.findOne(id);
   }
 
