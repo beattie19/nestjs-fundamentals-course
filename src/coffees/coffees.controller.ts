@@ -37,7 +37,9 @@ export class CoffeesController {
 
   @Public()
   @Get()
-  findAll(@Query() paginationQuery: PaginationQueryDto) {
+  async findAll(@Query() paginationQuery: PaginationQueryDto) {
+    // Arbitrarily set timeout longer than the TimeoutInterceptor
+    await new Promise((resolve) => setTimeout(resolve, 5000));
     return this.coffeeService.findAll(paginationQuery);
   }
 
@@ -66,7 +68,6 @@ export class CoffeesController {
   @Patch(':id')
   // Validation pipe only applied to body, not id.
   //   update(@Param('id') id: string, @Body(ValidationPipe) updateCoffeeDto: UpdateCoffeeDto) {
-
   update(@Param('id') id: string, @Body() updateCoffeeDto: UpdateCoffeeDto) {
     this.coffeeService.update(id, updateCoffeeDto);
   }
