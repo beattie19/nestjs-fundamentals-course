@@ -7,6 +7,7 @@ import { CoffeesService } from './coffees.service';
 import coffeesConfig from './config/coffees.config';
 import { Coffee } from './entities/coffee.entity';
 import { Flavor } from './entities/flavor.entity';
+import { Event } from '../events/entities/event.entity';
 
 // Value Based
 //

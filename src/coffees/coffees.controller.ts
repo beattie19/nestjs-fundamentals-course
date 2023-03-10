@@ -43,8 +43,8 @@ export class CoffeesController {
   // @Public()
 
   // Swagger - two ways to do the same thing
-    // @ApiResponse({ status: 403, description: 'Forbidden.' })
-    // @ApiForbiddenResponse({ description: 'Forbidden.' })
+  // @ApiResponse({ status: 403, description: 'Forbidden.' })
+  // @ApiForbiddenResponse({ description: 'Forbidden.' })
 
   @Public()
   // @ApiResponse({ status: 403, description: 'Forbidden.' })
